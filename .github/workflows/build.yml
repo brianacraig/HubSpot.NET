@@ -1,0 +1,36 @@
+name: Build and Publish
+
+# Triggers the workflow on push or pull request events
+on:
+  push:
+    branches:
+      - v2
+
+jobs:
+  publish_nuget:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x.x
+
+    - name: Update version
+      env:
+        GITHUB_RUN_NUMBER: $${{env.GITHUB_RUN_NUMBER}}
+      run: |
+        ls
+        sed -i -e "s/1.1.0/1.1.$GITHUB_RUN_NUMBER/g" ./**/*.csproj
+
+    - name: Create Package
+      run: dotnet pack --configuration Release --verbosity normal
+
+    - name: Push Nuget to GitHub
+      run: |
+        dotnet nuget add source https://nuget.pkg.github.com/VelocitySquared/index.json --name github --username ${{secrets.GITHUB_USER}} --password ${{secrets.GITHUB_TOKEN}} --store-password-in-clear-text
+        dotnet nuget push ./HubSpot.NET/bin/Release/V2.HubSpot.NETCORE.1.1.$GITHUB_RUN_NUMBER.nupkg --source github --skip-duplicate

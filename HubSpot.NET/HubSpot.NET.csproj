@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <Authors>HubSpot.NETCORE</Authors>
-    <Company>HubSpot.NETCORE</Company>
-    <Description>.NET CORE client library targeting the HubSpot APIs.</Description>
+    <Version>1.1.0</Version>
+    <Authors>HubSpot.NETCORE / Velocity Squared</Authors>
+    <Company>Velocity Squared / HubSpot.NETCORE</Company>
+    <Description>.NET CORE client library targeting the HubSpot APIs with modifications from Velocity Squared.</Description>
     <Copyright>HubSpot.NET</Copyright>
-    <PackageLicenseUrl>https://github.com/boomandbucket/HubSpot.NET/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/boomandbucket/HubSpot.NET</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/boomandbucket/HubSpot.NET.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/brianacraig/HubSpot.NET/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/brianacraig/HubSpot.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/brianacraig/HubSpot.NET.git</RepositoryUrl>
     <PackageTags>hubspot api wrapper c# contact company deal engagement properties crm custom objects</PackageTags>
-    <PackageReleaseNotes>1.0.0</PackageReleaseNotes>
-    <PackageId>HubSpot.NETCORE</PackageId>
+    <PackageReleaseNotes>1.1.0</PackageReleaseNotes>
+    <PackageId>V2.HubSpot.NETCORE</PackageId>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
