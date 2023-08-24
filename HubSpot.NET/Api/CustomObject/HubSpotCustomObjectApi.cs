@@ -180,7 +180,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
             path = path.SetQueryParam("properties", opts.PropertiesToInclude);
 
         if (opts.Offset.HasValue)
-            path = path.SetQueryParam("vidOffset", opts.Offset);
+            path = path.SetQueryParam("after", opts.Offset);
 
         var response = _client.ExecuteList<CustomObjectListHubSpotModel<T>>(path, convertToPropertiesSchema: false);
         return response;
