@@ -174,7 +174,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
         opts ??= new ListRequestOptions();
 
         var path = $"{RouteBasePath}/{idForCustomObject}"
-            .SetQueryParam("count", opts.Limit);
+            .SetQueryParam("limit", opts.Limit);
 
         if (opts.PropertiesToInclude.Any())
             path = path.SetQueryParam("properties", opts.PropertiesToInclude);
