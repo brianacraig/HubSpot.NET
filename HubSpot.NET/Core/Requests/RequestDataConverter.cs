@@ -257,6 +257,14 @@ namespace HubSpot.NET.Core.Requests
                 taskIdProp?.SetValue(dto, taskIdValue);
             }
 
+            if (dto is Api.CustomObject.CustomObjectHubSpotModel && expandoDict.TryGetValue("id", out var idData)) 
+            {
+                // TODO use properly serialized name of prop to find it
+                var idProp = dtoProps.SingleOrDefault(q => q.GetPropSerializedName() == "id");
+                // id is string for custom objects so no need to convert.
+                idProp?.SetValue(dto, idData);
+            }
+
             // DateCreated
             if (expandoDict.TryGetValue("createdAt", out var createdAtData))
             {
