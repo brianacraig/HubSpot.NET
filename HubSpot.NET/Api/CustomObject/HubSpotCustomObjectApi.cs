@@ -182,7 +182,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
         if (opts.Offset.HasValue)
             path = path.SetQueryParam("after", opts.Offset);
 
-        var response = _client.ExecuteList<CustomObjectListHubSpotModel<T>>(path, convertToPropertiesSchema: false);
+        var response = _client.ExecuteList<CustomObjectListHubSpotModel<T>>(path, convertToPropertiesSchema: true);
         return response;
     }
 
@@ -201,7 +201,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
     {
         var path = $"{RouteBasePath}/{objectTypeId}/{customObjectId}/associations/{idForDesiredAssociation}";
 
-        var response = _client.ExecuteList<CustomObjectListAssociationsModel<T>>(path, convertToPropertiesSchema:  false);
+        var response = _client.ExecuteList<CustomObjectListAssociationsModel<T>>(path, convertToPropertiesSchema:  true);
         return response;
     }
 
