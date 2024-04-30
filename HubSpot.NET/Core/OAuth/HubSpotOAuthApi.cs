@@ -1,4 +1,6 @@
-﻿namespace HubSpot.NET.Core.OAuth
+﻿using System;
+
+namespace HubSpot.NET.Core.OAuth
 {
     using System.Collections.Generic;
     using System.Text;
@@ -89,10 +91,7 @@
                     builder.Append($"%20{OAuthScopeNameConversions[scope]}");
             }
 
-            RestRequest request = new RestRequest(MidRoute)
-            {
-                JsonSerializer = new FakeSerializer()
-            };
+            RestRequest request = new RestRequest(MidRoute) {};
 
             Dictionary<string, string> jsonPreStringPairs = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(model));
 
@@ -111,15 +110,13 @@
             if (builder.Length > 0)
                 request.AddQueryParameter("scope", builder.ToString());
 
-            IRestResponse<HubSpotToken> serverReponse = client.Post<HubSpotToken>(request);
+            try {
+                HubSpotToken token = client.Post<HubSpotToken>(request);
+                return token;
+            } catch (Exception e) {
+                throw new HubSpotException("Error getting authorization request. Message: " + e.Message);
+            }
 
-            if (serverReponse.ResponseStatus != ResponseStatus.Completed)
-                throw new HubSpotException("Server did not respond to authorization request. Content: " + serverReponse.Content, new HubSpotError(serverReponse.StatusCode, serverReponse.Content), serverReponse.Content);
-
-            if (serverReponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                throw new HubSpotException("Error generating authentication token.", JsonConvert.DeserializeObject<HubSpotError>(serverReponse.Content), serverReponse.Content);
-
-            return serverReponse.Data;
         }
     }
 }
