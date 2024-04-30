@@ -219,7 +219,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
         var path = $"{RouteBasePath}/{entity.SchemaId}";
 
         var response =
-            _client.Execute<CreateCustomObjectHubSpotModel>(path, entity, Method.POST, convertToPropertiesSchema: false);
+            _client.Execute<CreateCustomObjectHubSpotModel>(path, entity, Method.Post, convertToPropertiesSchema: false);
 
         
         if (response.Properties.TryGetValue("hs_object_id", out var parsedId))
@@ -240,7 +240,7 @@ public class HubSpotCustomObjectApi : IHubSpotCustomObjectApi
     {
         var path = $"{RouteBasePath}/{entity.SchemaId}/{entity.Id}";
 
-        _client.Execute<UpdateCustomObjectHubSpotModel>(path, entity, Method.PATCH, convertToPropertiesSchema: false);
+        _client.Execute<UpdateCustomObjectHubSpotModel>(path, entity, Method.Patch, convertToPropertiesSchema: false);
         
         return string.Empty;
     }

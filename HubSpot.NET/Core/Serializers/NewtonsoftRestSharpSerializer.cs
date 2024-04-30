@@ -20,9 +20,8 @@
             });
         }
 
-        public NewtonsoftRestSharpSerializer()
-        {
-            ContentType = "application/json";
+        public NewtonsoftRestSharpSerializer() {
+            ContentType = RestSharp.ContentType.Json;
         }
 
         /// <summary>
@@ -43,6 +42,6 @@
         /// <summary>
         /// Content type for serialized content
         /// </summary>
-        public string ContentType { get; set; }
+        public RestSharp.ContentType ContentType { get; set; }
     }
 }

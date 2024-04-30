@@ -7,7 +7,7 @@
         public string RootElement { get; set; }
         public string Namespace { get; set; }
         public string DateFormat { get; set; }
-        public string ContentType { get; set; }
+        public RestSharp.ContentType ContentType { get; set; }
 
         internal FakeSerializer()
         {
